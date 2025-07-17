@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+}
+
+body[data-theme='en'] {
+  --bg-color: #f0f8ff;
+  --text-color: #222;
+  --primary-color: #007acc;
+  --accent-color: #e0f0ff;
+}
+
+/* Japanese Theme (elegant sakura pink) */
+body[data-theme='ja'] {
+  --bg-color: #fff0f5;
+  --text-color: #4a148c;
+  --primary-color: #ad1457;
+  --accent-color: #fce4ec;
+}
+
+/* Chinese Theme (vibrant red/gold) */
+body[data-theme='zh-CN'] {
+  --bg-color: #fffbe6;
+  --text-color: #5d4037;
+  --primary-color: #d32f2f;
+  --accent-color: #ffecb3;
+}
+
+/* Apply theme variables */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* General container */
+.home-container {
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Headings */
+h1 {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Paragraphs */
+p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Dropdown styling (if used) */
+select {
+  border: 1px solid var(--primary-color);
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  font-weight: 500;
+  border-radius: 6px;
+}
