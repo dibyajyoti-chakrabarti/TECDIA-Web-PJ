@@ -3,6 +3,11 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
+import Form from './components/Form.jsx'
+import Product from './components/Product.jsx'
+import TrackApp from './components/TrackApp.jsx'
+import Contact from './components/Contact.jsx'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // Add Google Translate script
 const addGoogleTranslateScript = () => {
@@ -30,4 +35,16 @@ observer.observe(document.documentElement, { attributes: true, attributeFilter: 
 
 addGoogleTranslateScript()
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="" element={<App />} />
+        <Route path="/form" element={<Form />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/track" element={<TrackApp />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>,
+)
