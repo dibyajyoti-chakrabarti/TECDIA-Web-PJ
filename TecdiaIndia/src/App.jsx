@@ -369,7 +369,7 @@ const App = () => {
       {/* Header - Consistent with Product page */}
       <header style={styles.header}>
         <div style={styles.logo}>
-          <div style={styles.logoText}>TECINDIA</div>
+          <div style={styles.logoText}>TECDIAINDIA</div>
           <div style={styles.flag}></div>
         </div>
         
@@ -416,7 +416,7 @@ const App = () => {
           </div>
           
           <h1 style={styles.mainTitle}>
-            What is <span style={styles.techdia}>Techdia</span>?
+            What is <span style={styles.techdia}>Tecdia</span>?
           </h1>
           
           <p style={styles.description}>
@@ -443,7 +443,7 @@ const App = () => {
       {/* Numbers Section */}
       <section style={styles.numbersSection}>
         <h2 style={styles.numbersTitle}>
-          <span style={styles.techdia}>TECHDIA</span> in<br />NUMBERS
+          <span style={styles.techdia}>TECDIA</span> in<br />NUMBERS
         </h2>
         <div style={styles.numbersGrid}>
           <div 
@@ -570,7 +570,7 @@ const App = () => {
         </div>
         
         <div style={styles.footer}>
-          TECHDIA PVT LTD. All rights reserved.
+          TECDIA PVT LTD. All rights reserved.
         </div>
       </section>
     </div>
