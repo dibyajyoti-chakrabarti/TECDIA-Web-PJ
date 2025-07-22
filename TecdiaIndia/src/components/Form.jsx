@@ -1,309 +1,6 @@
 import React, { useState } from 'react';
 import { User, Cpu, BarChart3, CheckCircle } from 'lucide-react';
 
-const styles = {
-  container: {
-    minHeight: '100vh',
-    background: 'linear-gradient(135deg, #374151 0%, #4B5563 50%, #111827 100%)',
-    color: 'white',
-    fontFamily: 'system-ui, -apple-system, sans-serif'
-  },
-  mainContent: {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '64px 24px'
-  },
-  heading: {
-    textAlign: 'center',
-    marginBottom: '64px',
-    fontSize: '3rem',
-    fontWeight: 'bold',
-    lineHeight: '1.2'
-  },
-  headingPrimary: {
-    color: '#f97316'
-  },
-  headingSecondary: {
-    color: 'white'
-  },
-  positionsGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-    gap: '32px',
-    marginBottom: '80px'
-  },
-  positionCard: {
-    background: 'white',
-    borderRadius: '16px',
-    padding: '32px',
-    color: '#374151',
-    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-    transition: 'all 0.3s ease',
-    cursor: 'pointer'
-  },
-  positionCardHover: {
-    transform: 'translateY(-8px)',
-    boxShadow: '0 25px 50px -12px rgba(249, 115, 22, 0.2)'
-  },
-  cardContent: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    textAlign: 'center'
-  },
-  cardIcon: {
-    marginBottom: '24px'
-  },
-  cardTitle: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    marginBottom: '24px'
-  },
-  cardTitlePrimary: {
-    color: '#f97316'
-  },
-  cardTitleSecondary: {
-    color: '#374151'
-  },
-  rolesList: {
-    listStyle: 'none',
-    padding: 0,
-    margin: 0
-  },
-  roleItem: {
-    display: 'flex',
-    alignItems: 'center',
-    fontSize: '0.875rem',
-    marginBottom: '12px'
-  },
-  roleBullet: {
-    width: '8px',
-    height: '8px',
-    backgroundColor: '#374151',
-    borderRadius: '50%',
-    marginRight: '12px'
-  },
-  processSection: {
-    marginBottom: '80px'
-  },
-  processGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-    gap: '32px',
-    maxWidth: '1200px',
-    margin: '0 auto'
-  },
-  processStep: {
-    display: 'flex',
-    alignItems: 'flex-start',
-    gap: '24px',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    borderRadius: '8px',
-    padding: '16px'
-  },
-  processStepHover: {
-    backgroundColor: 'rgba(255, 255, 255, 0.05)'
-  },
-  stepIndicator: {
-    flexShrink: 0
-  },
-  stepCircle: {
-    width: '48px',
-    height: '48px',
-    borderRadius: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: '1.125rem',
-    transition: 'all 0.3s ease'
-  },
-  stepCircleActive: {
-    backgroundColor: '#f97316'
-  },
-  stepCircleInactive: {
-    backgroundColor: '#4B5563'
-  },
-  stepLine: {
-    width: '2px',
-    height: '64px',
-    marginLeft: '23px',
-    marginTop: '8px',
-    transition: 'all 0.3s ease'
-  },
-  stepLineActive: {
-    backgroundColor: '#f97316'
-  },
-  stepLineInactive: {
-    backgroundColor: '#4B5563'
-  },
-  stepContent: {
-    flex: 1
-  },
-  stepLabel: {
-    fontSize: '0.875rem',
-    color: '#f97316',
-    fontWeight: '600',
-    marginBottom: '4px'
-  },
-  stepTitle: {
-    fontSize: '1.25rem',
-    fontWeight: 'bold',
-    marginBottom: '8px',
-    transition: 'all 0.3s ease'
-  },
-  stepTitleActive: {
-    color: 'white'
-  },
-  stepTitleInactive: {
-    color: '#9CA3AF'
-  },
-  stepDescription: {
-    fontSize: '0.875rem',
-    transition: 'all 0.3s ease'
-  },
-  stepDescriptionActive: {
-    color: '#D1D5DB'
-  },
-  stepDescriptionInactive: {
-    color: '#6B7280'
-  },
-  formSection: {
-    maxWidth: '1024px',
-    margin: '0 auto'
-  },
-  formHeading: {
-    textAlign: 'center',
-    marginBottom: '48px'
-  },
-  formSubtitle: {
-    fontSize: '1.25rem',
-    color: '#D1D5DB',
-    marginBottom: '16px'
-  },
-  formDescription: {
-    fontSize: '1.125rem',
-    color: '#9CA3AF'
-  },
-  formContainer: {
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    backdropFilter: 'blur(16px)',
-    borderRadius: '16px',
-    padding: '40px',
-    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-    border: '1px solid rgba(255, 255, 255, 0.2)'
-  },
-  formGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-    gap: '32px',
-    marginBottom: '32px'
-  },
-  formGroup: {
-    marginBottom: '32px'
-  },
-  label: {
-    display: 'block',
-    color: 'white',
-    fontWeight: '600',
-    marginBottom: '12px'
-  },
-  input: {
-    width: '100%',
-    padding: '12px 16px',
-    borderRadius: '8px',
-    backgroundColor: 'white',
-    border: '2px solid #f97316',
-    color: '#374151',
-    fontSize: '1rem',
-    outline: 'none',
-    transition: 'all 0.3s ease',
-    boxSizing: 'border-box'
-  },
-  inputFocus: {
-    ring: '2px',
-    ringColor: '#fb923c'
-  },
-  select: {
-    width: '100%',
-    padding: '12px 16px',
-    borderRadius: '8px',
-    backgroundColor: 'white',
-    border: '2px solid #f97316',
-    color: '#374151',
-    fontSize: '1rem',
-    outline: 'none',
-    transition: 'all 0.3s ease',
-    boxSizing: 'border-box'
-  },
-  textarea: {
-    width: '100%',
-    padding: '12px 16px',
-    borderRadius: '8px',
-    backgroundColor: 'white',
-    border: '2px solid #f97316',
-    color: '#374151',
-    fontSize: '1rem',
-    outline: 'none',
-    transition: 'all 0.3s ease',
-    resize: 'none',
-    fontFamily: 'inherit',
-    boxSizing: 'border-box'
-  },
-  fileInput: {
-    width: '100%',
-    padding: '12px 16px',
-    borderRadius: '8px',
-    backgroundColor: 'white',
-    border: '2px solid #f97316',
-    color: '#374151',
-    fontSize: '1rem',
-    outline: 'none',
-    transition: 'all 0.3s ease',
-    boxSizing: 'border-box'
-  },
-  checkboxContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    cursor: 'pointer'
-  },
-  checkbox: {
-    width: '20px',
-    height: '20px',
-    accentColor: '#f97316',
-    marginRight: '12px'
-  },
-  checkboxLabel: {
-    color: 'white'
-  },
-  link: {
-    color: '#f97316',
-    textDecoration: 'underline'
-  },
-  submitButton: {
-    backgroundColor: '#f97316',
-    color: 'white',
-    fontWeight: 'bold',
-    padding: '16px 48px',
-    borderRadius: '8px',
-    fontSize: '1.125rem',
-    border: 'none',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
-  },
-  submitButtonHover: {
-    backgroundColor: '#ea580c',
-    transform: 'scale(1.05)',
-    boxShadow: '0 10px 25px rgba(249, 115, 22, 0.3)'
-  },
-  submitContainer: {
-    textAlign: 'center'
-  }
-};
-
 export default function Form() {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -353,17 +50,17 @@ export default function Form() {
   const positions = [
     {
       title: 'Technical Position',
-      icon: <Cpu className="w-8 h-8 text-orange-500" style={{ width: '32px', height: '32px', color: '#f97316' }} />,
+      icon: <Cpu className="w-8 h-8 text-orange-500" />,
       roles: ['Research & Development (R&D)', 'Manufacturing/Quality Control', 'Quality Assurance', 'IT Development']
     },
     {
       title: 'Sales Position', 
-      icon: <BarChart3 className="w-8 h-8 text-orange-500" style={{ width: '32px', height: '32px', color: '#f97316' }} />,
+      icon: <BarChart3 className="w-8 h-8 text-orange-500" />,
       roles: ['Domestic Sales', 'International Sales', 'Global Sales']
     },
     {
       title: 'Administrative Position',
-      icon: <User className="w-8 h-8 text-orange-500" style={{ width: '32px', height: '32px', color: '#f97316' }} />,
+      icon: <User className="w-8 h-8 text-orange-500" />,
       roles: ['Trade Operations / Import & Export', 'Production Management', 'General Affairs / Administration']
     }
   ];
@@ -379,37 +76,35 @@ export default function Form() {
   ];
 
   return (
-    <div style={styles.container}>
-      <div style={styles.mainContent}>
-        <div style={styles.heading}>
+    <div className="min-h-screen bg-gradient-to-br from-gray-700 via-gray-600 to-gray-900 text-white font-sans">
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="text-center mb-16 text-5xl font-bold leading-tight">
           <h1>
-            <span style={styles.headingPrimary}>AVAILABLE</span>
+            <span className="text-orange-500">AVAILABLE</span>
             <br />
-            <span style={styles.headingSecondary}>POSITIONS</span>
+            <span className="text-white">POSITIONS</span>
           </h1>
         </div>
 
-        <div style={styles.positionsGrid}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {positions.map((position, index) => (
             <div 
               key={index} 
-              style={{
-                ...styles.positionCard,
-                ...(hoveredCard === index ? styles.positionCardHover : {})
-              }}
+              className={`bg-white rounded-2xl p-8 text-gray-700 shadow-xl transition-all duration-300 cursor-pointer 
+                ${hoveredCard === index ? 'transform -translate-y-2 shadow-orange-500/20' : ''}`}
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
             >
-              <div style={styles.cardContent}>
-                <div style={styles.cardIcon}>{position.icon}</div>
-                <h3 style={styles.cardTitle}>
-                  <span style={styles.cardTitlePrimary}>{position.title.split(' ')[0]} </span>
-                  <span style={styles.cardTitleSecondary}>{position.title.split(' ')[1]}</span>
+              <div className="flex flex-col items-center text-center">
+                <div className="mb-6">{position.icon}</div>
+                <h3 className="text-2xl font-bold mb-6">
+                  <span className="text-orange-500">{position.title.split(' ')[0]} </span>
+                  <span className="text-gray-700">{position.title.split(' ')[1]}</span>
                 </h3>
-                <ul style={styles.rolesList}>
+                <ul className="list-none p-0 m-0">
                   {position.roles.map((role, roleIndex) => (
-                    <li key={roleIndex} style={styles.roleItem}>
-                      <div style={styles.roleBullet}></div>
+                    <li key={roleIndex} className="flex items-center text-sm mb-3 last:mb-0">
+                      <div className="w-2 h-2 bg-gray-700 rounded-full mr-3"></div>
                       {role}
                     </li>
                   ))}
@@ -419,127 +114,122 @@ export default function Form() {
           ))}
         </div>
 
-        <div style={styles.processSection}>
-          <div style={styles.heading}>
+        <div className="mb-20">
+          <div className="text-center mb-16 text-5xl font-bold leading-tight">
             <h2>
-              <span style={styles.headingPrimary}>RECRUITMENT</span>
+              <span className="text-orange-500">RECRUITMENT</span>
               <br />
-              <span style={styles.headingSecondary}>PROCESS</span>
+              <span className="text-white">PROCESS</span>
             </h2>
           </div>
 
-          <div style={styles.processGrid}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
             {recruitmentSteps.map((step, index) => (
               <div 
                 key={index} 
-                style={{
-                  ...styles.processStep,
-                  ...(hoveredStep === index ? styles.processStepHover : {})
-                }}
+                className={`flex items-start gap-6 cursor-pointer transition-all duration-300 rounded-lg p-4 
+                  ${hoveredStep === index ? 'bg-white/5' : ''}`}
                 onClick={() => setCurrentStep(step.step)}
                 onMouseEnter={() => setHoveredStep(index)}
                 onMouseLeave={() => setHoveredStep(null)}
               >
-                <div style={styles.stepIndicator}>
-                  <div style={{
-                    ...styles.stepCircle,
-                    ...(step.step <= currentStep ? styles.stepCircleActive : styles.stepCircleInactive)
-                  }}>
+                <div className="flex-shrink-0 flex flex-col items-center">
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg transition-all duration-300 
+                    ${step.step <= currentStep ? 'bg-orange-500' : 'bg-gray-600'}`}>
                     {step.step <= currentStep ? (
-                      <CheckCircle style={{ width: '24px', height: '24px' }} />
+                      <CheckCircle className="w-6 h-6" />
                     ) : (
                       step.step
                     )}
                   </div>
                   {index < recruitmentSteps.length - 1 && (
-                    <div style={{
-                      ...styles.stepLine,
-                      ...(step.step < currentStep ? styles.stepLineActive : styles.stepLineInactive)
-                    }}></div>
+                    <div className={`w-0.5 h-16 ml-6 mt-2 transition-all duration-300 
+                      ${step.step < currentStep ? 'bg-orange-500' : 'bg-gray-600'}`}></div>
                   )}
                 </div>
-                <div style={styles.stepContent}>
-                  <div style={styles.stepLabel}>STEP {step.step.toString().padStart(2, '0')}</div>
-                  <h3 style={{
-                    ...styles.stepTitle,
-                    ...(step.step <= currentStep ? styles.stepTitleActive : styles.stepTitleInactive)
-                  }}>{step.title}</h3>
-                  <p style={{
-                    ...styles.stepDescription,
-                    ...(step.step <= currentStep ? styles.stepDescriptionActive : styles.stepDescriptionInactive)
-                  }}>{step.description}</p>
+                <div className="flex-1">
+                  <div className="text-sm text-orange-500 font-semibold mb-1">STEP {step.step.toString().padStart(2, '0')}</div>
+                  <h3 className={`text-xl font-bold mb-2 transition-all duration-300 
+                    ${step.step <= currentStep ? 'text-white' : 'text-gray-400'}`}>{step.title}</h3>
+                  <p className={`text-sm transition-all duration-300 
+                    ${step.step <= currentStep ? 'text-gray-300' : 'text-gray-500'}`}>{step.description}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div style={styles.formSection}>
-          <div style={styles.formHeading}>
-            <h2 style={styles.heading}>
-              <span style={styles.headingPrimary}>APPLICATION</span>
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-5xl font-bold leading-tight">
+              <span className="text-orange-500">APPLICATION</span>
               <br />
-              <span style={styles.headingSecondary}>FORM</span>
+              <span className="text-white">FORM</span>
             </h2>
-            <p style={styles.formSubtitle}>Take the first step towards joining our team</p>
-            <p style={styles.formDescription}>Fill out the form below to apply</p>
+            <p className="text-xl text-gray-300 mb-4 mt-4">Take the first step towards joining our team</p>
+            <p className="text-lg text-gray-400">Fill out the form below to apply</p>
           </div>
 
-          <div style={styles.formContainer}>
-            <div style={styles.formGrid}>
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-10 shadow-2xl border border-white/20">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div>
-                <label style={styles.label}>First Name</label>
+                <label htmlFor="firstName" className="block text-white font-semibold mb-3">First Name</label>
                 <input
                   type="text"
+                  id="firstName"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
-                  style={styles.input}
+                  className="w-full p-3.5 rounded-lg bg-white border-2 border-orange-500 text-gray-700 text-base outline-none transition-all duration-300 focus:ring-2 focus:ring-orange-400"
                 />
               </div>
               <div>
-                <label style={styles.label}>Last Name</label>
+                <label htmlFor="lastName" className="block text-white font-semibold mb-3">Last Name</label>
                 <input
                   type="text"
+                  id="lastName"
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleInputChange}
-                  style={styles.input}
+                  className="w-full p-3.5 rounded-lg bg-white border-2 border-orange-500 text-gray-700 text-base outline-none transition-all duration-300 focus:ring-2 focus:ring-orange-400"
                 />
               </div>
             </div>
 
-            <div style={styles.formGrid}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div>
-                <label style={styles.label}>Email Address</label>
+                <label htmlFor="email" className="block text-white font-semibold mb-3">Email Address</label>
                 <input
                   type="email"
+                  id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  style={styles.input}
+                  className="w-full p-3.5 rounded-lg bg-white border-2 border-orange-500 text-gray-700 text-base outline-none transition-all duration-300 focus:ring-2 focus:ring-orange-400"
                 />
               </div>
               <div>
-                <label style={styles.label}>Phone Number</label>
+                <label htmlFor="phone" className="block text-white font-semibold mb-3">Phone Number</label>
                 <input
                   type="tel"
+                  id="phone"
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  style={styles.input}
+                  className="w-full p-3.5 rounded-lg bg-white border-2 border-orange-500 text-gray-700 text-base outline-none transition-all duration-300 focus:ring-2 focus:ring-orange-400"
                 />
               </div>
             </div>
 
-            <div style={styles.formGrid}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div>
-                <label style={styles.label}>Position Applied For</label>
+                <label htmlFor="position" className="block text-white font-semibold mb-3">Position Applied For</label>
                 <select
+                  id="position"
                   name="position"
                   value={formData.position}
                   onChange={handleInputChange}
-                  style={styles.select}
+                  className="w-full p-3.5 rounded-lg bg-white border-2 border-orange-500 text-gray-700 text-base outline-none transition-all duration-300 focus:ring-2 focus:ring-orange-400"
                 >
                   <option value="">Select Position</option>
                   <option value="technical">Technical Position</option>
@@ -548,63 +238,65 @@ export default function Form() {
                 </select>
               </div>
               <div>
-                <label style={styles.label}>Years of Experience</label>
+                <label htmlFor="experience" className="block text-white font-semibold mb-3">Years of Experience</label>
                 <input
                   type="number"
+                  id="experience"
                   name="experience"
                   value={formData.experience}
                   onChange={handleInputChange}
-                  style={styles.input}
+                  className="w-full p-3.5 rounded-lg bg-white border-2 border-orange-500 text-gray-700 text-base outline-none transition-all duration-300 focus:ring-2 focus:ring-orange-400"
                   min="0"
                 />
               </div>
             </div>
 
-            <div style={styles.formGroup}>
-              <label style={styles.label}>Cover Letter</label>
+            <div className="mb-8">
+              <label htmlFor="coverLetter" className="block text-white font-semibold mb-3">Cover Letter</label>
               <textarea
+                id="coverLetter"
                 name="coverLetter"
                 value={formData.coverLetter}
                 onChange={handleInputChange}
                 rows={6}
-                style={styles.textarea}
+                className="w-full p-3.5 rounded-lg bg-white border-2 border-orange-500 text-gray-700 text-base outline-none transition-all duration-300 resize-none font-sans focus:ring-2 focus:ring-orange-400"
                 placeholder="Tell us about yourself and why you're interested in this position..."
               ></textarea>
             </div>
 
-            <div style={styles.formGroup}>
-              <label style={styles.label}>Resume/CV</label>
+            <div className="mb-8">
+              <label htmlFor="resume" className="block text-white font-semibold mb-3">Resume/CV</label>
               <input
                 type="file"
+                id="resume"
                 name="resume"
                 onChange={handleFileChange}
                 accept=".pdf,.doc,.docx"
-                style={styles.fileInput}
+                className="w-full p-3.5 rounded-lg bg-white border-2 border-orange-500 text-gray-700 text-base outline-none transition-all duration-300 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-orange-100 file:text-orange-700 hover:file:bg-orange-200 cursor-pointer focus:ring-2 focus:ring-orange-400"
               />
             </div>
 
-            <div style={styles.formGroup}>
-              <label style={styles.checkboxContainer}>
+            <div className="mb-8">
+              <label htmlFor="agreeToTerms" className="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  id="agreeToTerms"
                   name="agreeToTerms"
                   checked={formData.agreeToTerms}
                   onChange={handleInputChange}
-                  style={styles.checkbox}
+                  className="w-5 h-5 accent-orange-500 mr-3"
                 />
-                <span style={styles.checkboxLabel}>
-                  I agree to the <span style={styles.link}>terms & conditions</span> & <span style={styles.link}>privacy policies</span>
+                <span className="text-white">
+                  I agree to the <span className="text-orange-500 underline">terms & conditions</span> & <span className="text-orange-500 underline">privacy policies</span>
                 </span>
               </label>
             </div>
 
-            <div style={styles.submitContainer}>
+            <div className="text-center">
               <button
                 onClick={handleSubmit}
-                style={{
-                  ...styles.submitButton,
-                  ...(isButtonHovered ? styles.submitButtonHover : {})
-                }}
+                className={`bg-orange-500 text-white font-bold py-4 px-12 rounded-lg text-lg border-none cursor-pointer transition-all duration-300 shadow-lg 
+                  ${isButtonHovered ? 'bg-orange-600 transform scale-105 shadow-orange-500/30' : ''}`}
                 onMouseEnter={() => setIsButtonHovered(true)}
                 onMouseLeave={() => setIsButtonHovered(false)}
               >
