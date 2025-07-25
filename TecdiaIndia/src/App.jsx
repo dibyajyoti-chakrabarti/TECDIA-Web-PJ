@@ -2,6 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import heroImage from "./assets/hero.png";
 import companyLogo from "./assets/company_logo1.png";
+import Squares from "./backgrounds/Squares/Squares.jsx";
+  
+
 
 const App = () => {
   const navigate = useNavigate();
@@ -28,14 +31,14 @@ const App = () => {
         <img src={heroImage} alt="Diamond" className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] opacity-90 z-20 max-w-full" />
         
         {/* Segment #1: Nav Bar*/}
-        <div className='w-lvw bg-white absolute top-0 flex p-3 gap-3 items-center'>
+        <div className='w-lvw bg-transparent absolute top-0 flex p-3 gap-5 items-center'>
           
           <img src={companyLogo} alt="" className='border-solid border-3 border-black cursor-pointer w-25' onClick={() => handleNavClick('/')}/>
-          <div className=' text-white bg-blue-400 flex gap-3 justify-end w-lvw'>
-            <button className='cursor-pointer hover:scale-120 bg-black'>Contact us</button>
-            <button className='cursor-pointer hover:scale-120 bg-black'>Home</button>
-            <button className='cursor-pointer hover:scale-120 bg-black'>Products</button>
-            <button className='cursor-pointer hover:scale-120 bg-black'>Contact us</button>
+          <div className=' text-white bg-transprent flex gap-10 justify-start w-lvw'>
+            <button className='cursor-pointer hover:scale-120 font-bold'>Home</button>
+            <button className='cursor-pointer hover:scale-120 font-bold'>Contact Us</button>
+            <button className='cursor-pointer hover:scale-120 font-bold'>Products</button>
+            <button className='cursor-pointer hover:scale-120 font-bold  p-5'>Apply</button>
           </div>
         </div>
 
@@ -124,45 +127,63 @@ const App = () => {
           </p>
         </div>
       </section>
+      
+<section className="relative text-white px-10 py-20 text-center overflow-hidden">
+  {/* Squares background */}
+  <div className="absolute inset-0 z-0">
+    <Squares 
+      speed={0.5} 
+      squareSize={40}
+      direction="diagonal"
+      borderColor="#fff"
+      hoverFillColor="#222"
+    />
+  </div>
 
-      {/* Segemnt #5 */}
-      <section className="bg-black text-white px-10 py-20 text-center">
-        {/* Section Title */}
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-16 tracking-tight">
-          <span className="text-[#ff9900]">TECDIA</span> in<br />NUMBERS
-        </h2>
+  {/* Foreground content */}
+  <div className="relative z-10">
+    {/* Numbers Grid */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5 max-w-5xl mx-auto">
+      
+      <h2 className="md:text-5xl font-extrabold tracking-tight xl:col-span-2 lg:col-span-2 text-white">
+        <span className="text-blue-300 xl:text-9xl lg:text-8xl md:text-8xl sm:text-[83px] text-[80px]">TECDIA</span><br />
+        <span className="xl:text-5xl lg:text-4xl md:text-[40px] sm:text-3xl text-4xl">in NUMBERS</span>
+      </h2>
 
-        {/* Numbers Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-5 xl:grid-cols-6 gap-5 max-w-5xl mx-auto">
-          
-          
-          <div className="bg-yellow-400 text-white rounded-2xl py-12 px-8 flex flex-col items-center justify-center min-h-[150px] transition-transform hover:-translate-y-1 cursor-pointer xl:col-span-2">
-            <h3 className="text-4xl font-bold mb-2">150+</h3>
-            <p className="text-base">Global Clients</p>
-          </div>
+      <div className="bg-blue-500 py-12 px-8 flex flex-col items-center justify-center min-h-[150px] transition-transform hover:-translate-y-1 cursor-pointer xl:row-span-2 lg:row-span-2 shadow-lg shadow-yellow-900 rounded-4xl">
+        <h3 className="text-4xl font-bold mb-2">150+</h3>
+        <p className="text-base">Global Clients</p>
+      </div>
 
-          <div className="bg-radial-[at_25%_25%] from-red-800 to-purple-900 to-75% text-white rounded-2xl py-12 px-8 flex flex-col items-center justify-center min-h-[150px] transition-transform hover:-translate-y-1 cursor-pointer xl:col-span-2">
-            <h3 className="text-4xl font-bold mb-2">25+</h3>
-            <p className="text-base">Countries</p>
-          </div>
+      <div className="bg-yellow-500 py-12 px-8 flex flex-col items-center justify-center min-h-[150px] transition-transform hover:-translate-y-1 cursor-pointer xl:row-span-2 lg:row-span-2 shadow-lg shadow-yellow-900 rounded-4xl">
+        <h3 className="text-4xl font-bold mb-2">25+</h3>
+        <p className="text-base">Countries</p>
+      </div>
 
-          <div className="bg-radial-[at_25%_25%] from-red-800 to-purple-900 to-75% text-white rounded-2xl py-12 px-8 flex flex-col items-center justify-center min-h-[150px] transition-transform hover:-translate-y-1 cursor-pointer xl:col-span-2 ">
-            <h3 className="text-4xl font-bold mb-2">500+</h3>
-            <p className="text-base">Products</p>
-          </div>
+      <div className="bg-orange-500 py-12 px-8 flex flex-col items-center justify-center min-h-[150px] transition-transform hover:-translate-y-1 cursor-pointer xl:row-span-2 lg:row-span-2 shadow-lg shadow-yellow-900 rounded-4xl">
+        <h3 className="text-4xl font-bold mb-2">500+</h3>
+        <p className="text-base">Products</p>
+      </div>
 
-          <div className="bg-radial-[at_25%_25%] from-red-800 to-purple-900 to-75% text-white rounded-2xl py-12 px-8 flex flex-col items-center justify-center min-h-[150px] transition-transform hover:-translate-y-1 cursor-pointer xl:col-span-3">
-            <h3 className="text-4xl font-bold mb-2">15</h3>
-            <p className="text-base">Years Experience</p>
-          </div>
+      <div className="bg-green-500 py-12 px-8 flex flex-col items-center justify-center min-h-[150px] transition-transform hover:-translate-y-1 cursor-pointer shadow-lg shadow-yellow-900 rounded-4xl">
+        <h3 className="text-4xl font-bold mb-2">15</h3>
+        <p className="text-base">Years Experience</p>
+      </div>
 
-          <div className="bg-radial-[at_25%_25%] from-red-800 to-purple-900 to-75% text-white rounded-2xl py-12 px-8 flex flex-col items-center justify-center min-h-[150px] transition-transform hover:-translate-y-1 cursor-pointer  xl:col-span-3 ">
-            <h3 className="text-4xl font-bold mb-2">99%</h3>
-            <p className="text-base">Client Satisfaction</p>
-          </div>
+      <div className="bg-rose-800 py-12 px-8 flex flex-col items-center justify-center min-h-[150px] transition-transform hover:-translate-y-1 cursor-pointer shadow-lg shadow-yellow-900 rounded-4xl">
+        <h3 className="text-4xl font-bold mb-2">99%</h3>
+        <p className="text-base">Client Satisfaction</p>
+      </div>
 
-        </div>
-      </section>
+      <div className="bg-purple-500 py-12 px-8 flex flex-col items-center justify-center min-h-[150px] transition-transform hover:-translate-y-1 cursor-pointer xl:col-span-2 lg:col-span-2 sm:col-span-2 shadow-lg shadow-yellow-900 rounded-4xl">
+        <h3 className="text-4xl font-bold mb-2">99%</h3>
+        <p className="text-base">Client Satisfaction</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
       {/* Segement #6 */}
       <section className="bg-black text-white px-10 py-20">
@@ -253,7 +274,36 @@ const App = () => {
           TECDIA PVT LTD. All rights reserved.
         </div>
       </section>
+          
 
+
+        <div className="group relative cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+              {/* Glowing background effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/30 to-orange-600/30 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:blur-xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/20 to-orange-600/20 rounded-2xl blur opacity-50 group-hover:opacity-80 transition-opacity duration-500"></div>
+
+              <div className="relative bg-black/40 group-hover:bg-black/20 backdrop-blur-xl rounded-2xl p-6 border border-white/10 group-hover:border-pink-400/40 transition-all duration-500 h-80 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-400/0 via-pink-400/5 to-orange-600/0 group-hover:from-pink-400/10 group-hover:via-pink-400/20 group-hover:to-orange-600/10 transition-all duration-500 rounded-2xl"></div>
+
+                <div className="relative z-10">
+                  <h3 className="text-lg font-medium mb-3 text-yellow-400 group-hover:text-yellow-300 transition-colors duration-300 group-hover:drop-shadow-lg">
+                    Paid acquisition rate 79.2%
+                  </h3>
+                  <p className="text-sm leading-relaxed mb-6 text-gray-300 group-hover:text-white transition-colors duration-300">
+                    We are promoting the use of paid leave and are working to create
+                    an environment where 100% of employees can take leave. Some
+                    foreign employees even use their consecutive holidays and paid
+                    leave to go home for nearly two weeks
+                  </p>
+                </div>
+
+                <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300">
+                </div>
+
+                <div className="absolute top-4 right-4 w-2 h-2 bg-pink-400 rounded-full opacity-0 group-hover:opacity-60 group-hover:animate-ping transition-opacity duration-300"></div>
+                <div className="absolute top-8 right-8 w-1 h-1 bg-orange-400 rounded-full opacity-0 group-hover:opacity-80 group-hover:animate-pulse transition-opacity duration-500"></div>
+              </div>
+            </div>
     </div>
   );
 };
